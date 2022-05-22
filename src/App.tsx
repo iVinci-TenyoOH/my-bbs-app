@@ -8,17 +8,21 @@ import CreatePostModal from "./components/CreatePostModal";
 import DetailPostModal from "./components/DetailPostModal";
 
 function App() {
-  const [isCreatePostModalOpen, setIsCreatePostModalOpen] = useState<boolean>(false);
-  const [isDetailPostModalOpen, setIsDetailPostModalOpen] = useState<boolean>(false);
+  // falseで初期化しているんで、現場のコーディング規約によりますが型を書く必要はないです。
+  const [isCreatePostModalOpen, setIsCreatePostModalOpen] = useState(false);
+  const [isDetailPostModalOpen, setIsDetailPostModalOpen] = useState(false);
+
   const handleCreatePostModalOpen = () => {
-    setIsCreatePostModalOpen(!isCreatePostModalOpen);
+    // https://zenn.dev/stin/articles/use-appropriate-api
+    setIsCreatePostModalOpen(prev => !prev);
   };
   const handleDetailPostModalOpen = () => {
-    setIsDetailPostModalOpen(!isDetailPostModalOpen);
+    setIsDetailPostModalOpen(prev => !prev);
   };
+
   return (
     <div className="App">
-      <Header handleCreatePostModalOpen={handleCreatePostModalOpen} />
+      <Header createPostModalOpen={handleCreatePostModalOpen} />
       <Container maxWidth="xl">
         <StyledPostPreview onClick={handleDetailPostModalOpen}/>
         <StyledPostPreview />
@@ -27,8 +31,8 @@ function App() {
         <StyledPostPreview />
         <StyledPostPreview />
       </Container>
-      <CreatePostModal isCreatePostModalOpen={isCreatePostModalOpen} handleCreatePostModalOpen={handleCreatePostModalOpen}></CreatePostModal>
-      <DetailPostModal isDetailPostModalOpen={isDetailPostModalOpen} handleDetailPostModalOpen={handleDetailPostModalOpen}></DetailPostModal>
+      <CreatePostModal isOpen={isCreatePostModalOpen} handleCreatePostModalOpen={handleCreatePostModalOpen} />
+      <DetailPostModal isOpen={isDetailPostModalOpen} handleDetailPostModalOpen={handleDetailPostModalOpen} />
     </div>
   );
 }

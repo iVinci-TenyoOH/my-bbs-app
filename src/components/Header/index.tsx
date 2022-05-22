@@ -3,11 +3,11 @@ import { faCheese, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { AppBar, Container, Toolbar, IconButton, Button } from "@mui/material";
 
 interface Props {
-  handleCreatePostModalOpen: () => void;
+  createPostModalOpen: () => void;
 }
 
 const Header: React.FunctionComponent<Props> = (props) => {
-  const { handleCreatePostModalOpen } = props;
+  const { createPostModalOpen } = props;
   return (
     <AppBar position="sticky">
       <Container maxWidth="xl">
@@ -15,7 +15,7 @@ const Header: React.FunctionComponent<Props> = (props) => {
           <IconButton sx={{ color: "primary.contrastText" }}>
             <FontAwesomeIcon icon={faCheese} />
           </IconButton>
-          <Button variant="contained" sx={{ border: 1 }} onClick={handleCreatePostModalOpen}>
+          <Button variant="contained" sx={{ border: 1 }} onClick={createPostModalOpen}>
             <FontAwesomeIcon icon={faPenToSquare} style={{marginRight:4}}/>
             投稿する
           </Button>

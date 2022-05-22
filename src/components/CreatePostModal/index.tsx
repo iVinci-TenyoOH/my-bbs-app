@@ -6,7 +6,7 @@ import Draggable from "react-draggable";
 import Creatable from "react-select/creatable";
 
 interface Prop {
-  isCreatePostModalOpen: boolean;
+  isOpen: boolean;
   handleCreatePostModalOpen: () => void;
 }
 
@@ -19,7 +19,7 @@ interface FormValues {
 }
 
 const CreatePostModal: React.FunctionComponent<Prop> = (props) => {
-  const { isCreatePostModalOpen, handleCreatePostModalOpen } = props;
+  const { isOpen, handleCreatePostModalOpen } = props;
 
   const TempDraggable: any = Draggable;
   const { control, handleSubmit } = useForm<FormValues>({
@@ -31,9 +31,7 @@ const CreatePostModal: React.FunctionComponent<Prop> = (props) => {
   function PaperComponent(props: PaperProps) {
     return (
       <TempDraggable handle="#draggable-dialog-title" cancel={'[class*="MuiDialogContent-root"]'}>
-        <span>
-          <Paper {...props} />
-        </span>
+        <Paper {...props} sx={{ width: '100%' }} />
       </TempDraggable>
     );
   }
@@ -43,61 +41,59 @@ const CreatePostModal: React.FunctionComponent<Prop> = (props) => {
   };
 
   return (
-    <div>
-      <Dialog
-        open={isCreatePostModalOpen}
-        onClose={handleCreatePostModalOpen}
-        PaperComponent={PaperComponent}
-        aria-labelledby="draggable-dialog-title"
-        //selectのドロップダウンがすべて表示されるために設定する
-        sx={{ "& .MuiPaper-root": { overflowY: "visible" } }}
+    <Dialog
+      open={isOpen}
+      onClose={handleCreatePostModalOpen}
+      PaperComponent={PaperComponent}
+      aria-labelledby="draggable-dialog-title"
+      //selectのドロップダウンがすべて表示されるために設定する
+      sx={{ "& .MuiPaper-root": { overflowY: "visible" } }}
+    >
+      <form
+        onSubmit={handleSubmit(onSubmit)}
       >
-        <form
-          onSubmit={handleSubmit(onSubmit)}
+        <DialogTitle id="draggable-dialog-title">投稿新規作成</DialogTitle>
+        <IconButton
+          aria-label="close"
+          onClick={handleCreatePostModalOpen}
+          sx={{
+            position: "absolute",
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
         >
-          <DialogTitle id="draggable-dialog-title">投稿新規作成</DialogTitle>
-          <IconButton
-            aria-label="close"
-            onClick={handleCreatePostModalOpen}
-            sx={{
-              position: "absolute",
-              right: 8,
-              top: 8,
-              color: (theme) => theme.palette.grey[500],
-            }}
-          >
-            <FontAwesomeIcon icon={faClose}></FontAwesomeIcon>
-          </IconButton>
-          <DialogContent dividers sx={{ overflowY: "visible" }}>
-            <Box sx={{ display: "flex" }}>
-              <Avatar sx={{ bgcolor: "pink", mr: 1 }}>W</Avatar>
-              <Box sx={{ width: 600 }}>
-                <Controller render={({ field }) => <TextField {...field} multiline rows={4} fullWidth sx={{ mb: 2 }} placeholder="なにかをつぶやく..." />} name="content" control={control} />
-                <Controller
-                  name="tag"
-                  render={({ field }) => (
-                    <Creatable
-                      {...field}
-                      isMulti
-                      placeholder="タグをつけよう..."
-                      options={[
-                        { value: "旅行", label: "旅行" },
-                        { value: "グルメ", label: "グルメ" },
-                        { value: "コーディング", label: "コーディング" },
-                      ]}
-                    />
-                  )}
-                  control={control}
-                />
-              </Box>
+          <FontAwesomeIcon icon={faClose}></FontAwesomeIcon>
+        </IconButton>
+        <DialogContent dividers sx={{ overflowY: "visible" }}>
+          <Box sx={{ display: "flex" }}>
+            <Avatar sx={{ bgcolor: "pink", mr: 1 }}>W</Avatar>
+            <Box sx={{ flex: 1 }}>
+              <Controller render={({ field }) => <TextField {...field} multiline rows={4} fullWidth sx={{ mb: 2 }} placeholder="なにかをつぶやく..." />} name="content" control={control} />
+              <Controller
+                name="tag"
+                render={({ field }) => (
+                  <Creatable
+                    {...field}
+                    isMulti
+                    placeholder="タグをつけよう..."
+                    options={[
+                      { value: "旅行", label: "旅行" },
+                      { value: "グルメ", label: "グルメ" },
+                      { value: "コーディング", label: "コーディング" },
+                    ]}
+                  />
+                )}
+                control={control}
+              />
             </Box>
-          </DialogContent>
-          <DialogActions>
-            <Button type="submit">送信</Button>
-          </DialogActions>
-        </form>
-      </Dialog>
-    </div>
+          </Box>
+        </DialogContent>
+        <DialogActions>
+          <Button type="submit">送信</Button>
+        </DialogActions>
+      </form>
+    </Dialog>
   );
 };
 

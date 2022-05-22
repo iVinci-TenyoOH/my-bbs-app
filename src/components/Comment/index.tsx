@@ -25,7 +25,7 @@ const Comment: React.FunctionComponent<Props> = (props) => {
   );
 };
 
-const Balloon = styled.p`
+const Balloon = styled.div`
   position: relative;
   margin: 0;
   border: 1px solid #9e9e9e;
