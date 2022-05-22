@@ -11,12 +11,11 @@ const mockText =
   "この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミー";
 
 interface Prop {
-  isOpen: boolean;
   handleDetailPostModalOpen: () => void;
 }
 
 const DetailPostModal: React.FunctionComponent<Prop> = (props) => {
-  const { isOpen, handleDetailPostModalOpen } = props;
+  const { handleDetailPostModalOpen } = props;
 
   const TempDraggable: any = Draggable;
   function PaperComponent(props: PaperProps) {
@@ -28,7 +27,7 @@ const DetailPostModal: React.FunctionComponent<Prop> = (props) => {
   }
 
   return (
-    <Dialog open={isOpen} onClose={handleDetailPostModalOpen} PaperComponent={PaperComponent} aria-labelledby="draggable-dialog-title">
+    <Dialog open onClose={handleDetailPostModalOpen} PaperComponent={PaperComponent} aria-labelledby="draggable-dialog-title">
       <DialogTitle id="draggable-dialog-title">Ten さんの投稿</DialogTitle>
       <IconButton
         aria-label="close"

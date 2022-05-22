@@ -31,8 +31,8 @@ function App() {
         <StyledPostPreview />
         <StyledPostPreview />
       </Container>
-      <CreatePostModal isOpen={isCreatePostModalOpen} handleCreatePostModalOpen={handleCreatePostModalOpen} />
-      <DetailPostModal isOpen={isDetailPostModalOpen} handleDetailPostModalOpen={handleDetailPostModalOpen} />
+      {isCreatePostModalOpen && <CreatePostModal handleCreatePostModalOpen={handleCreatePostModalOpen} />}
+      {isDetailPostModalOpen && <DetailPostModal handleDetailPostModalOpen={handleDetailPostModalOpen} />}
     </div>
   );
 }
