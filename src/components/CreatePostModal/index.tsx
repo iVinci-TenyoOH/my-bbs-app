@@ -6,7 +6,6 @@ import Draggable from "react-draggable";
 import Creatable from "react-select/creatable";
 
 interface Prop {
-  isOpen: boolean;
   handleCreatePostModalOpen: () => void;
 }
 
@@ -19,7 +18,7 @@ interface FormValues {
 }
 
 const CreatePostModal: React.FunctionComponent<Prop> = (props) => {
-  const { isOpen, handleCreatePostModalOpen } = props;
+  const { handleCreatePostModalOpen } = props;
 
   const TempDraggable: any = Draggable;
   const { control, handleSubmit } = useForm<FormValues>({
@@ -42,7 +41,7 @@ const CreatePostModal: React.FunctionComponent<Prop> = (props) => {
 
   return (
     <Dialog
-      open={isOpen}
+      open
       onClose={handleCreatePostModalOpen}
       PaperComponent={PaperComponent}
       aria-labelledby="draggable-dialog-title"
