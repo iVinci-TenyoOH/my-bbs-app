@@ -20,6 +20,7 @@
     "@types/react-modal": "^3.13.1",
     "@types/react-redux": "^7.1.7",
     "@types/styled-components": "^5.1.25",
+    "dayjs": "^1.11.3",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-draggable": "^4.4.4",
@@ -54,5 +55,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "msw": "^0.42.0"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }

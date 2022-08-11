@@ -1,37 +1,43 @@
-import { Box, IconButton } from "@mui/material";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faThumbsUp, faHeart, faComment } from "@fortawesome/free-solid-svg-icons";
-import styled from "styled-components";
+import { Box, IconButton } from '@mui/material';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faThumbsUp, faHeart, faComment } from '@fortawesome/free-solid-svg-icons';
+import styled from 'styled-components';
 
 const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
   margin-right: 8px;
 `;
 
 interface Prop {
-  reactionsCount: {
+  reactionsCount?: {
     thumbsUp: number;
-    like: number;
-    comment: number;
+    heart: number;
+    commentsCount: number;
   };
 }
 
 const ReactionBtns: React.FunctionComponent<Prop> = (props) => {
+  // reactionsCountがundefinedの場合の既定値を設定する
   const {
-    reactionsCount: { thumbsUp, like, comment },
+    reactionsCount = {
+      thumbsUp: 0,
+      heart: 0,
+      commentsCount: 0,
+    },
   } = props;
+
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: 'flex' }}>
       <IconButton>
         <StyledFontAwesomeIcon icon={faThumbsUp} />
-        {thumbsUp}
+        {reactionsCount.thumbsUp}
       </IconButton>
       <IconButton>
         <StyledFontAwesomeIcon icon={faHeart} />
-        {like}
+        {reactionsCount.heart}
       </IconButton>
       <IconButton>
         <StyledFontAwesomeIcon icon={faComment} />
-        {comment}
+        {reactionsCount.commentsCount}
       </IconButton>
     </Box>
   );

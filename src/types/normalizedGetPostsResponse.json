@@ -1,0 +1,71 @@
+{
+  "posts": {
+    "ids": ["post1", "post2", "post3", "post4", "post5", "post6"],
+    "entities": {
+      "post1": {
+        "id": "post1",
+        "author": "user1",
+        "content": "aaa",
+        "comments": ["comment1", "comment2"]
+      },
+      "post2": {
+        "id": "post2",
+        "author": "user2",
+        "content": "bbb",
+        "comments": ["comment1", "comment2"]
+      },
+      "post3": {
+        "id": "post3",
+        "author": "user3",
+        "content": "ccc",
+        "comments": ["comment1", "comment2"]
+      },
+      "post4": {
+        "id": "post4",
+        "author": "user4",
+        "content": "ddd",
+        "comments": ["comment1", "comment2"]
+      },
+      "post5": {
+        "id": "post5",
+        "author": "user5",
+        "content": "eee",
+        "comments": ["comment1", "comment2"]
+      },
+      "post6": {
+        "id": "post6",
+        "author": "user6",
+        "content": "fff",
+        "comments": ["comment1", "comment2"]
+      }
+    }
+  },
+  "users": {
+    "ids": ["user1", "user2", "user3", "user4", "user5", "user6"],
+    "entities": {
+      "user1": {
+        "id": "user1",
+        "name": "nameA"
+      },
+      "user2": {
+        "id": "user2",
+        "name": "nameB"
+      }
+    }
+  },
+  "comments": {
+    "ids": ["comment1", "comment2", "comment3", "comment4", "comment5", "comment6"],
+    "entities": {
+      "comment1": {
+        "id": "comment1",
+        "author": "user1",
+        "comment": "aaaaaaaaaaaaa"
+      },
+      "comment2": {
+        "id": "comment2",
+        "author": "user2",
+        "comment": "aaaaaaaaaaaaa"
+      }
+    }
+  }
+}
