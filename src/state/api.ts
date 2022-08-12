@@ -15,8 +15,7 @@ export const userInitialState = userAdapter.getInitialState();
 
 export const api = createApi({
   reducerPath: 'api',
-  // baseUrlが空文字の場合、同じドメインで呼び出せるためlocalでポートが3000以外でも動作するようになります。
-  baseQuery: fetchBaseQuery({ baseUrl: API_SERVER || '' }),
+  baseQuery: fetchBaseQuery({ baseUrl: API_SERVER }),
   endpoints: (builder) => ({
     getPosts: builder.query<EntityState<IPost>, void>({
       query: () => '/post',
