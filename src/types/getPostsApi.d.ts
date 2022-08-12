@@ -1,3 +1,6 @@
+// 型定義はtsファイルにしましょう
+// https://techlab.q-co.jp/articles/41/
+
 export interface IPost {
   id: string;
   author: string;

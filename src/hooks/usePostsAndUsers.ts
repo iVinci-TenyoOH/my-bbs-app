@@ -1,5 +1,5 @@
 import { skipToken } from '@reduxjs/toolkit/query/react';
-import { useGetPostsQuery, useGetUsersQuery } from '../state/api';
+import { postInitialState, userInitialState, useGetPostsQuery, useGetUsersQuery } from '../state/api';
 import { IPost } from '../types/getPostsApi';
 import { EntityState } from '@reduxjs/toolkit';
 
@@ -15,18 +15,9 @@ const retrieveUserIdsFromPosts = (posts: EntityState<IPost>) => {
 };
 
 export const usePostsAndUsers = () => {
-  const { data: posts } = useGetPostsQuery(undefined);
+  const { data: posts = postInitialState } = useGetPostsQuery();
 
-  const { data: users, error, isLoading } = useGetUsersQuery(posts ? retrieveUserIdsFromPosts(posts) : skipToken);
-
-  if (!posts || !users) {
-    return {
-      posts: undefined,
-      users: undefined,
-      error,
-      isLoading,
-    };
-  }
+  const { data: users = userInitialState, error, isLoading } = useGetUsersQuery(posts ? retrieveUserIdsFromPosts(posts) : skipToken);
 
   return {
     posts,

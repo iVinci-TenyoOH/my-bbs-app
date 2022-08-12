@@ -36,7 +36,7 @@ function App() {
     <div className="App">
       <Header createPostModalOpen={handleCreatePostModalOpen} />
       <Container maxWidth="xl">
-        {posts && posts.ids.map((id) => <StyledPostPreview postId={id} onClick={handleDetailPostModalOpen} key={id} />)}
+        {posts.ids.map((id) => <StyledPostPreview postId={id} onClick={handleDetailPostModalOpen} key={id} />)}
       </Container>
       {isCreatePostModalOpen && <CreatePostModal handleCreatePostModalOpen={handleCreatePostModalOpen} />}
       {isDetailPostModalOpen && <DetailPostModal handleDetailPostModalOpen={handleDetailPostModalOpen} />}

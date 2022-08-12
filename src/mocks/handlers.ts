@@ -1,6 +1,8 @@
 // src/mocks/handlers.js
 import { rest } from 'msw';
 
+// mocksの以下に配置した方がいいと思います
+// public以下のgetPostsResponseは削除
 import getPostsJson from '../types/getPostsResponse.json';
 import getUsersJson from '../types/getUsersResponse.json';
 
