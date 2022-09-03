@@ -17,21 +17,31 @@ const retrieveUserIdsFromPosts = (posts: EntityState<IPost>) => {
 export const usePostsAndUsers = () => {
   const { data: posts } = useGetPostsQuery(undefined);
 
-  const { data: users, error, isLoading } = useGetUsersQuery(posts ? retrieveUserIdsFromPosts(posts) : skipToken);
+  const {
+    data: users,
+    isSuccess,
+    isLoading,
+    isError,
+    error,
+  } = useGetUsersQuery(posts ? retrieveUserIdsFromPosts(posts) : skipToken);
 
   if (!posts || !users) {
     return {
       posts: undefined,
       users: undefined,
-      error,
+      isSuccess,
       isLoading,
+      isError,
+      error,
     };
   }
 
   return {
     posts,
     users,
-    error,
+    isSuccess,
     isLoading,
+    isError,
+    error,
   };
 };

@@ -1,4 +1,4 @@
-import { Container } from '@mui/material';
+import { Alert, Container, Skeleton } from '@mui/material';
 import styled from 'styled-components';
 import { useState } from 'react';
 // import { useSelector } from 'react-redux';
@@ -12,15 +12,14 @@ import DetailPostModal from './components/DetailPostModal';
 import { usePostsAndUsers } from './hooks/usePostsAndUsers';
 
 function App() {
-  // falseで初期化しているんで、現場のコーディング規約によりますが型を書く必要はないです。
   const [isCreatePostModalOpen, setIsCreatePostModalOpen] = useState(false);
   const [isDetailPostModalOpen, setIsDetailPostModalOpen] = useState(false);
 
-  const { posts, users, error, isLoading } = usePostsAndUsers();
+  const { posts, users, isSuccess, isLoading, isError, error } = usePostsAndUsers();
   // const { data: posts, error } = useGetPostsQuery(undefined);
   // const { posts } = (data as EntityState<IPost>) ?? {};
   // console.log(useSelector(api.endpoints.getPosts.select(undefined)));
-  // console.log(error);
+  console.log(posts);
 
   // const test = store.dispatch(api.endpoints.getPosts.initiate());
 
@@ -32,12 +31,36 @@ function App() {
     setIsDetailPostModalOpen((prev) => !prev);
   };
 
+  const getContent = () => {
+    if (isLoading) {
+      return <Skeleton animation="wave" />;
+    } else if (isSuccess && posts) {
+      return (
+        <Container maxWidth="xl">
+          {posts.ids.map((id) => (
+            <StyledPostPreview postId={id} onClick={handleDetailPostModalOpen} key={id} />
+          ))}
+        </Container>
+      );
+    } else if (isError && error) {
+      if ('status' in error) {
+        return (
+          <Alert variant="filled" severity="error">
+            An error has occurred:
+            {error.status}
+          </Alert>
+        );
+      } else {
+        // you can access all properties of `SerializedError` here
+        return <div>{error.message}</div>;
+      }
+    }
+  };
+
   return (
     <div className="App">
       <Header createPostModalOpen={handleCreatePostModalOpen} />
-      <Container maxWidth="xl">
-        {posts && posts.ids.map((id) => <StyledPostPreview postId={id} onClick={handleDetailPostModalOpen} key={id} />)}
-      </Container>
+      {getContent()}
       {isCreatePostModalOpen && <CreatePostModal handleCreatePostModalOpen={handleCreatePostModalOpen} />}
       {isDetailPostModalOpen && <DetailPostModal handleDetailPostModalOpen={handleDetailPostModalOpen} />}
     </div>
