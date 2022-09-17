@@ -8,16 +8,16 @@ import { RootState } from './store';
 
 // EntityAdapterの初期化
 const postsAdapter = createEntityAdapter<IPost>();
-const postInitialState = postsAdapter.getInitialState();
+export const postInitialState = postsAdapter.getInitialState();
 
 const userAdapter = createEntityAdapter<IUser>();
-const userInitialState = userAdapter.getInitialState();
+export const userInitialState = userAdapter.getInitialState();
 
 export const api = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({ baseUrl: API_SERVER }),
   endpoints: (builder) => ({
-    getPosts: builder.query<EntityState<IPost>, undefined>({
+    getPosts: builder.query<EntityState<IPost>, void>({
       query: () => '/post',
       transformResponse: (res: IPost[]) => {
         return postsAdapter.setAll(postInitialState, res);
@@ -35,7 +35,7 @@ export const api = createApi({
 export const { useGetPostsQuery, useGetUsersQuery } = api;
 
 // EntityAdapter Selectorsのexport
-const selectPostsResult = api.endpoints.getPosts.select(undefined);
+const selectPostsResult = api.endpoints.getPosts.select();
 const selectPostsData = createSelector(selectPostsResult, (postsResult) => postsResult.data);
 export const postsSelectors = postsAdapter.getSelectors(
   (state: RootState) => selectPostsData(state) ?? postInitialState

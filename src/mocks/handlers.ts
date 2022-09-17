@@ -1,8 +1,8 @@
 // src/mocks/handlers.js
 import { rest } from 'msw';
 
-import getPostsJson from '../types/getPostsResponse.json';
-import getUsersJson from '../types/getUsersResponse.json';
+import getPostsJson from './res/getPostsResponse.json';
+import getUsersJson from './res/getUsersResponse.json';
 
 export const handlers = [
   rest.post('/login', (req, res, ctx) => {

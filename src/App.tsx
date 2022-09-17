@@ -11,7 +11,7 @@ import DetailPostModal from './components/DetailPostModal';
 // import { api, selectAllPosts, useGetPostsQuery, selectPostsResult, selectPostsData } from './state/api';
 import { usePostsAndUsers } from './hooks/usePostsAndUsers';
 
-function App() {
+const App: React.FC = () => {
   const [isCreatePostModalOpen, setIsCreatePostModalOpen] = useState(false);
   const [isDetailPostModalOpen, setIsDetailPostModalOpen] = useState(false);
 
@@ -34,7 +34,7 @@ function App() {
   const getContent = () => {
     if (isLoading) {
       return <Skeleton animation="wave" />;
-    } else if (isSuccess && posts) {
+    } else if (isSuccess) {
       return (
         <Container maxWidth="xl">
           {posts.ids.map((id) => (
@@ -45,7 +45,7 @@ function App() {
     } else if (isError && error) {
       if ('status' in error) {
         return (
-          <Alert variant="filled" severity="error">
+          <Alert variant="filled" severity="error" data-testId="errAlert">
             An error has occurred:
             {error.status}
           </Alert>
@@ -65,7 +65,7 @@ function App() {
       {isDetailPostModalOpen && <DetailPostModal handleDetailPostModalOpen={handleDetailPostModalOpen} />}
     </div>
   );
-}
+};
 
 const StyledPostPreview = styled(PostPreview)`
   margin-bottom: 10px;
