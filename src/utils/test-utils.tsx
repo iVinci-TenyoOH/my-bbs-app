@@ -1,5 +1,5 @@
-import React, { ReactNode, ReactElement, PropsWithChildren } from 'react';
 import { render } from '@testing-library/react';
+import { ReactElement, ReactNode } from 'react';
 import { Provider } from 'react-redux';
 
 import { store } from '../state/store';

@@ -1,11 +1,11 @@
-import { createTheme } from "@mui/material/styles";
-import { lightGreen } from "@mui/material/colors";
+import { lightGreen } from '@mui/material/colors';
+import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   palette: {
     primary: {
       main: lightGreen[500],
-      contrastText: "#fff",
+      contrastText: '#fff',
     },
   },
 });

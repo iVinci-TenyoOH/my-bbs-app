@@ -1,12 +1,12 @@
-import { Box, Card, CardContent, Avatar } from '@mui/material';
+import { Avatar, Box, Card, CardContent } from '@mui/material';
 import { lightGreen } from '@mui/material/colors';
 import { EntityId } from '@reduxjs/toolkit';
 import dayjs from 'dayjs';
 
-import ReactionBtns from '../ReactionBtns';
+import { postsSelectors, usersSelectors } from '../../../state/api';
+import { useAppSelector } from '../../../state/hooks';
 import HashTag from '../HashTag';
-import { postsSelectors, usersSelectors, useGetPostsQuery } from '../../state/api';
-import { useAppSelector } from '../../state/hooks';
+import ReactionBtns from '../ReactionBtns';
 
 interface Props {
   postId: EntityId;

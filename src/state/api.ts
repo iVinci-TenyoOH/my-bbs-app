@@ -4,7 +4,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { API_SERVER } from '../constants/envConfig';
 import { IPost } from '../types/getPostsApi';
 import { IUser } from '../types/getUsersApi';
-import { RootState } from './store';
+import { AppState } from './store';
 
 // EntityAdapterの初期化
 const postsAdapter = createEntityAdapter<IPost>();
@@ -38,12 +38,10 @@ export const { useGetPostsQuery, useGetUsersQuery } = api;
 const selectPostsResult = api.endpoints.getPosts.select();
 const selectPostsData = createSelector(selectPostsResult, (postsResult) => postsResult.data);
 export const postsSelectors = postsAdapter.getSelectors(
-  (state: RootState) => selectPostsData(state) ?? postInitialState
+  (state: AppState) => selectPostsData(state) ?? postInitialState
 );
 
 // usersのリクエストパラメータはいったん仮置き（[TODO] storeで管理するように実装）
 const selectUsersResult = api.endpoints.getUsers.select('user1,user2,user3,user4,user6');
 const selectUsersData = createSelector(selectUsersResult, (usersResult) => usersResult.data);
-export const usersSelectors = userAdapter.getSelectors(
-  (state: RootState) => selectUsersData(state) ?? userInitialState
-);
+export const usersSelectors = userAdapter.getSelectors((state: AppState) => selectUsersData(state) ?? userInitialState);

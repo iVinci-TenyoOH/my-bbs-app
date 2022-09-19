@@ -1,7 +1,8 @@
-import { skipToken } from '@reduxjs/toolkit/query/react';
-import { postInitialState, userInitialState, useGetPostsQuery, useGetUsersQuery } from '../state/api';
-import { IPost } from '../types/getPostsApi';
 import { EntityState } from '@reduxjs/toolkit';
+import { skipToken } from '@reduxjs/toolkit/query/react';
+
+import { postInitialState, useGetPostsQuery, useGetUsersQuery, userInitialState } from '../state/api';
+import { IPost } from '../types/getPostsApi';
 
 const retrieveUserIdsFromPosts = (posts: EntityState<IPost>) => {
   // postsレスポンスからuserIdを取り出す

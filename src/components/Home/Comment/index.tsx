@@ -1,5 +1,5 @@
-import { Avatar, Box } from "@mui/material";
-import styled from "styled-components";
+import { Avatar, Box } from '@mui/material';
+import styled from 'styled-components';
 
 interface Props {
   user: {
@@ -15,7 +15,7 @@ const Comment: React.FunctionComponent<Props> = (props) => {
   } = props;
   return (
     <>
-      <Box mt={2} sx={{ display: "flex" }}>
+      <Box mt={2} sx={{ display: 'flex' }}>
         <Avatar sx={{ mr: 3 }}>{userName}</Avatar>
         <Balloon>
           <div>{content}</div>
@@ -33,7 +33,7 @@ const Balloon = styled.div`
   overflow: visible;
 
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     top: 15px;
     left: -22px;
@@ -44,7 +44,7 @@ const Balloon = styled.div`
   }
 
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     top: 15px;
     left: -20px;

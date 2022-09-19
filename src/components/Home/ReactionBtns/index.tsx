@@ -1,6 +1,6 @@
-import { Box, IconButton } from '@mui/material';
+import { faComment, faHeart, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faThumbsUp, faHeart, faComment } from '@fortawesome/free-solid-svg-icons';
+import { Box, IconButton } from '@mui/material';
 import styled from 'styled-components';
 
 const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
