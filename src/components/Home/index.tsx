@@ -22,8 +22,7 @@ const App: React.FC = () => {
   // const { data: posts, error } = useGetPostsQuery(undefined);
   // const { posts } = (data as EntityState<IPost>) ?? {};
   // console.log(useSelector(api.endpoints.getPosts.select(undefined)));
-  console.log(posts);
-
+  // console.log(posts);
   // const test = store.dispatch(api.endpoints.getPosts.initiate());
 
   // const handleCreatePostModalOpen = () => {

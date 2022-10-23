@@ -3,9 +3,8 @@ import './index.css';
 import { ThemeProvider } from '@mui/material/styles';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { RouterProvider } from 'react-router-dom';
 
-import router from './router';
+import App from './App';
 import { store } from './state/store';
 import theme from './theme/style';
 
@@ -22,7 +21,7 @@ root.render(
   // React.StrictModeはエラーが解決できないなら、削除してもいいです
   <ThemeProvider theme={theme}>
     <Provider store={store}>
-      <RouterProvider router={router} />
+      <App />
     </Provider>
   </ThemeProvider>
 );
